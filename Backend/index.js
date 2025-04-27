@@ -20,8 +20,11 @@ const maxID = () =>{
     return (maxID +1)
 }
 
+app.get("/",(request, response)=>{
+    response.json(mensajes)
+})
 app.get("/api/mensaje",(request, response)=>{
-        response.json(mensajes)
+    response.json(mensajes)
 })
 app.get("/api/mensaje/:id",(request, response)=>{
      const id = request.params.id
