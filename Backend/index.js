@@ -33,8 +33,8 @@ app.get("/api/mensaje/:id",(request, response)=>{
 })
 
 //BORRAR
-app.delete("/api/mensaje/del/:id",(request,response)=>{
-    const id = Number(request.params(id))
+app.delete("/api/mensaje/:id",(request,response)=>{
+    const id = Number(request.params.id)
     mensajes = mensajes.filter(y => y.id != id)
         response.json(mensajes)
 })

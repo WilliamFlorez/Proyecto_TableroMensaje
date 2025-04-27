@@ -57,19 +57,13 @@ const App = () => {
         })
   }
   const Borrar =(params)=>{
-          const x = params.info
-          const url = baseUrl+"del/"+x 
+          const x = params.target.info
+          const url = baseUrl+x 
 
-        axios.delete(url,MensajeObjet).then( resposne=>{
+        axios.delete(url).then( ()=>{
           console.log("borrado||"+x)
             setMensaje(mensaje.filter(mens => mens.id != x))
         })
-
-    return(
-      <div>
-        <button>Borrar {params.info}  ++++ {url}</button>
-      </div>
-    )
   }
 
 
@@ -79,8 +73,9 @@ const App = () => {
             {mensaje.map((mensaje, index) =>{
               return(
                 <div>
-                    <div key={index}>{index+1}||{mensaje.content } <Borrar info={mensaje.id}/></div>
-                    
+                    <div key={index}>{index+1}||{mensaje.content}
+                      <button  onClick={Borrar} info={mensaje.id}>borrar</button>
+                    </div>
                 </div>
               )
             })}
