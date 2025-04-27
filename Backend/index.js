@@ -32,11 +32,14 @@ app.get("/api/mensaje/:id",(request, response)=>{
      response.json(x)
 })
 
+//BORRAR
 app.delete("/api/mensaje/del/:id",(request,response)=>{
     const id = Number(request.params(id))
     mensajes = mensajes.filter(y => y.id != id)
-        response.status('204').end()
+        response.json(mensajes)
 })
+
+
 app.post("/api/mensaje",(request,response)=>{
     const text = request.body
 

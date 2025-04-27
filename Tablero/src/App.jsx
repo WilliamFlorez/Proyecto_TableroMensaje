@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
         
-const baseUrl= 'http://localhost:3001/api/mensaje'
-//const baseUrl = ''
+//const baseUrl= 'http://localhost:3001/api/mensaje'
+const baseUrl = 'https://proyecto-tableromensaje.onrender.com/api/mensaje/'
 
 
 
@@ -56,6 +56,21 @@ const App = () => {
 //            setMensajeInput('')           
         })
   }
+  const Borrar =(params)=>{
+          const x = params.info
+          const url = baseUrl+"del/"+x 
+
+        axios.delete(url,MensajeObjet).then( resposne=>{
+          console.log("borrado||"+x)
+            setMensaje(mensaje.filter(mens => mens.id != x))
+        })
+
+    return(
+      <div>
+        <button>Borrar {params.info}  ++++ {url}</button>
+      </div>
+    )
+  }
 
 
   const Listar=()=>{
@@ -63,7 +78,10 @@ const App = () => {
         <div>
             {mensaje.map((mensaje, index) =>{
               return(
-                <div key={index}>{index+1}||{mensaje.content }</div>
+                <div>
+                    <div key={index}>{index+1}||{mensaje.content } <Borrar info={mensaje.id}/></div>
+                    
+                </div>
               )
             })}
         </div>
