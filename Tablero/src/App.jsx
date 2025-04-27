@@ -56,12 +56,11 @@ const App = () => {
 //            setMensajeInput('')           
         })
   }
-  const Borrar =(params)=>{
-          const x = params.target.info
+  const Borrar =(event)=>{
+          const x = event.target.value
           const url = baseUrl+x 
 
         axios.delete(url).then( ()=>{
-          console.log("borrado||"+x)
             setMensaje(mensaje.filter(mens => mens.id != x))
         })
   }
@@ -74,7 +73,7 @@ const App = () => {
               return(
                 <div>
                     <div key={index}>{index+1}||{mensaje.content}
-                      <button  onClick={Borrar} info={mensaje.id}>borrar</button>
+                      <button key ={index} onClick={Borrar} value={mensaje.id}>borrar </button>
                     </div>
                 </div>
               )
